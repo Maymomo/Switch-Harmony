@@ -71,7 +71,7 @@ func GetGameDetailInfo(url string) (*GameDetail, error) {
 	detail.GamePlayers, _ = strconv.Atoi(gamePlayer[:len(gamePlayer)-len("人")])
 
 	// parse Price
-	priceInfo := doc.Find("div.game-detail-view-all").Find("div.row").Eq(1).Find(".game-detail-title").Next()
+	priceInfo := doc.Find("div.col-md-12").Find("div.single-region-view").First()
 	for {
 		v, b := priceInfo.Attr("class")
 		if len(priceInfo.Nodes) == 0 || !b || v == "more-region-info" {
@@ -81,7 +81,7 @@ func GetGameDetailInfo(url string) (*GameDetail, error) {
 			Region:        priceInfo.Find("div.region").Text(),
 			HasChinese:    len(priceInfo.Find("div.chinese-view").Find("span.chinese").Nodes) != 0,
 			IsLowestPrice: len(priceInfo.Find("div.chinese-view").Find("div.shidi").Nodes) != 0,
-			GameLanguage:  strings.Split(strings.TrimSpace(strings.Split(priceInfo.Find("div.game-language").Text(), ":")[1]), "，"),
+			GameLanguage:  strings.Split(strings.TrimSpace(strings.Split(priceInfo.Find("div.game-language").Find("span").Text(), ":")[1]), "，"),
 			RegionComment: strings.TrimSpace(priceInfo.Find("div.single-region-third-view").Find(".game-region-comment").Text()),
 		}
 		tmp := priceInfo.Find(".single-region-third-view").Find(".release-date.col-md-3").Find("span").Text()

@@ -6,6 +6,6 @@ import (
 )
 
 func TestGetGameDetailInfo(t *testing.T) {
-	detail, err := GetGameDetailInfo("http://www.eshop-switch.com/game/2.html")
+	detail, err := GetGameDetailInfo("http://www.eshop-switch.com/game/5.html")
 	fmt.Println(detail, err)
 }
