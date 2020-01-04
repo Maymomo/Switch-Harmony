@@ -40,15 +40,9 @@ func crawlGameDetail(x QueryGameSummary, save *[]*db.GameInfo, group *sync.WaitG
 retry:
 	detail, err := GetGameDetailInfo(u)
 	if err != nil {
-		v, b := err.(StatusCodeError)
-		if b && count < maxRetryCount {
-			count++
-			log.Printf("[TASK] Get game %d detail info error. Status code is %d. Retry it.", x.ID, v.code)
-			goto retry
-		} else {
-			log.Printf("[TASK] get game %d detail info err\n", x.ID)
-			log.Fatal(err)
-		}
+		count++
+		log.Printf("[TASK] Get game %d detail info error. Error is %s. Retry it.", x.ID, err.Error())
+		goto retry
 	}
 	sale := 100
 	if x.SALE != "" {
@@ -81,7 +75,6 @@ retry:
 			summary.HasSolidEdition = true
 		}
 	}
-	fmt.Sprintf("%d done", x.ID)
 	*save = append(*save, &db.GameInfo{
 		Detail:  *detail,
 		Summary: summary,
