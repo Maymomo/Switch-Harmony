@@ -23,7 +23,3 @@ func GetDetailInfo(r *gin.Context) {
 	}
 	r.JSON(http.StatusOK, detail)
 }
-
-func GetSummaryInfo(r *gin.Context) {
-
-}
