@@ -9,7 +9,7 @@ const maxPageCount = 300
 const maxRetryCount = 5
 
 func Work() {
-	now := 39
+	now := 1
 	for now <= maxPageCount {
 		tryCount := 0
 	retry:

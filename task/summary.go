@@ -33,7 +33,7 @@ type QueryResp struct {
 	TotalPageCount int                `json:"totalPageCount"`
 }
 
-func crawlGameDetail(x *QueryGameSummary, save *[]*db.GameInfo, group *sync.WaitGroup) {
+func crawlGameDetail(x QueryGameSummary, save *[]*db.GameInfo, group *sync.WaitGroup) {
 	defer group.Done()
 	u := DetailURL + strconv.Itoa(x.ID) + ".html"
 	count := 0
@@ -81,10 +81,12 @@ retry:
 			summary.HasSolidEdition = true
 		}
 	}
+	fmt.Sprintf("%d done", x.ID)
 	*save = append(*save, &db.GameInfo{
 		Detail:  *detail,
 		Summary: summary,
 	})
+	return
 }
 
 func CrawlOverPage(number int) ([]*db.GameInfo, error) {
@@ -113,7 +115,7 @@ func CrawlOverPage(number int) ([]*db.GameInfo, error) {
 	waitGroup := sync.WaitGroup{}
 	for _, x := range queryResp.List {
 		waitGroup.Add(1)
-		go crawlGameDetail(&x, &ret, &waitGroup)
+		go crawlGameDetail(x, &ret, &waitGroup)
 	}
 	waitGroup.Wait()
 	return ret, nil
