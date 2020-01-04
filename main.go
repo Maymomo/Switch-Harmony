@@ -1,12 +1,18 @@
 package main
 
 import (
+	"fmt"
+	"github.com/Maymomo/Switch-Harmony/common"
+	"github.com/Maymomo/Switch-Harmony/db"
 	"github.com/Maymomo/Switch-Harmony/server"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	config := common.GetConfig().WebConfig
+	db.DataBaseInit()
 	r := gin.Default()
 	server.SetRouter(r)
-	r.Run()
+	addr := fmt.Sprintf("%s:%d", config.Address, config.Port)
+	r.Run(addr)
 }

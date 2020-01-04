@@ -2,6 +2,7 @@ package task
 
 import (
 	"fmt"
+	"github.com/Maymomo/Switch-Harmony/db"
 	"github.com/PuerkitoBio/goquery"
 	"log"
 	"net/http"
@@ -9,21 +10,21 @@ import (
 	"strings"
 )
 
-func GetGameDetailInfo(url string) (*GameDetail, error) {
+func GetGameDetailInfo(url string) (*db.GameDetail, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return nil, StatusCodeError(resp.StatusCode)
+		return nil, FormatStatusCodeError(resp.StatusCode)
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
 		return nil, err
 	}
-	var detail GameDetail
+	var detail db.GameDetail
 	detail.GameNameCN = doc.Find("div.game-name").Text()
 	detail.GameNameEN = doc.Find("div.game-en").Text()
 	//size := doc.Find("div.game-size")
@@ -35,16 +36,16 @@ func GetGameDetailInfo(url string) (*GameDetail, error) {
 	}
 	tag1 := doc.Find("div.game-tag1-view").Find("span").First()
 	for len(tag1.Nodes) != 0 {
-		tagType, val := Str2Tag(tag1.Text())
+		tagType, val := db.Str2Tag(tag1.Text())
 		switch tagType {
-		case LanguageType:
+		case db.LanguageType:
 			detail.LanguageTag = append(detail.LanguageTag, val)
 			detail.HasChinese = true
-		case HasSolidEdition:
+		case db.HasSolidEdition:
 			detail.HasSolidEdition = true
-		case Exclusive:
+		case db.Exclusive:
 			detail.IsExclusive = true
-		case HasDemo:
+		case db.HasDemo:
 			detail.HasDemo = true
 		default:
 			log.Fatal(fmt.Errorf("tag %s parse error", tag1.Text()))
@@ -77,17 +78,22 @@ func GetGameDetailInfo(url string) (*GameDetail, error) {
 		if len(priceInfo.Nodes) == 0 || !b || v == "more-region-info" {
 			break
 		}
-		price := Price{
+		var language []string
+		buffer := strings.Split(strings.TrimSpace(priceInfo.Find("div.game-language").Find("span").Text()), ":")
+		if len(buffer) > 1 {
+			language = strings.Split(buffer[1], "，")
+		}
+		price := db.Price{
 			Region:        priceInfo.Find("div.region").Text(),
 			HasChinese:    len(priceInfo.Find("div.chinese-view").Find("span.chinese").Nodes) != 0,
 			IsLowestPrice: len(priceInfo.Find("div.chinese-view").Find("div.shidi").Nodes) != 0,
-			GameLanguage:  strings.Split(strings.TrimSpace(strings.Split(priceInfo.Find("div.game-language").Find("span").Text(), ":")[1]), "，"),
+			GameLanguage:  language,
 			RegionComment: strings.TrimSpace(priceInfo.Find("div.single-region-third-view").Find(".game-region-comment").Text()),
 		}
 		tmp := priceInfo.Find(".single-region-third-view").Find(".release-date.col-md-3").Find("span").Text()
 		if len(tmp) != 0 {
 			tmp = strings.Split(tmp, "：")[1]
-			lowest, err := ParsePrice(tmp)
+			lowest, err := db.ParsePrice(tmp)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -116,13 +122,13 @@ func GetGameDetailInfo(url string) (*GameDetail, error) {
 			price.IsOnSale = false
 		}
 		tmp = priceInfo.Find("span.price-cny").Text()
-		priceCNY, err := ParsePrice(tmp)
+		priceCNY, err := db.ParsePrice(tmp)
 		if err != nil {
 			log.Fatal(err)
 		}
 		price.PriceCNY = priceCNY
 		tmp = priceInfo.Find("div.price").Text()
-		priceLocal, err := ParsePrice(tmp)
+		priceLocal, err := db.ParsePrice(tmp)
 		if err != nil {
 			log.Fatal(err)
 		}
