@@ -3,13 +3,30 @@ package task
 import (
 	"github.com/Maymomo/Switch-Harmony/db"
 	"log"
+	"time"
 )
 
 const maxPageCount = 300
 const maxRetryCount = 5
 
+func needCrawlDirectly() bool {
+	_, npage := db.GetSummaryByPage(0, 1)
+	return npage == 0
+}
+
+func BackgroundWork() {
+	go func() {
+		if needCrawlDirectly() {
+			Work()
+		}
+		for _ = range time.Tick(time.Hour * 24) {
+			Work()
+		}
+	}()
+}
+
 func Work() {
-	now := 0
+	now := 1
 	for now <= maxPageCount {
 		tryCount := 0
 	retry:

@@ -44,6 +44,10 @@ func initConfig(path string) {
 
 func GetConfig() *GlobalConfig {
 	if config == nil {
+		configPathEnv := os.Getenv("CONFIG_PATH")
+		if (configPathEnv != "") {
+			configPath = configPathEnv
+		}
 		initConfig(configPath)
 	}
 	return config
