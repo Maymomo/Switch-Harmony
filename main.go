@@ -5,6 +5,7 @@ import (
 	"github.com/Maymomo/Switch-Harmony/common"
 	"github.com/Maymomo/Switch-Harmony/db"
 	"github.com/Maymomo/Switch-Harmony/server"
+	"github.com/Maymomo/Switch-Harmony/task"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,5 +15,6 @@ func main() {
 	r := gin.Default()
 	server.SetRouter(r)
 	addr := fmt.Sprintf("%s:%d", config.Address, config.Port)
+	task.BackgroundWork()
 	r.Run(addr)
 }
