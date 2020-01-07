@@ -1,6 +1,7 @@
 package db
 
 import (
+	"fmt"
 	"log"
 	"math"
 	"strconv"
@@ -14,9 +15,17 @@ func (r *GameSummary) InsertToDB() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	db.Table(SummaryTempTable).Create(r.toDB())
+	tmp := r.toDB()
+	// check weather exit
+	b := db.Table(SummaryTempTable).NewRecord(tmp)
+	if !b {
+		db.Table(SummaryTempTable).Save(tmp)
+	} else {
+		db.Table(SummaryTempTable).Create(tmp)
+	}
 }
-func GetSummaryByPage(offset, limit int) (ret []*GameSummary, totalPages int) {
+
+func GetSummaryByPage(str string, offset, limit int) (ret []*GameSummary, totalPages int) {
 	if offset < 0 || limit < 0 {
 		return nil, 0
 	}
@@ -29,12 +38,18 @@ func GetSummaryByPage(offset, limit int) (ret []*GameSummary, totalPages int) {
 	}
 	defer db.Close()
 	var tmp []GameSummaryDB
-	db.Table(SummaryTable).Offset(offset).Limit(limit).Find(&GameSummaryDB{}).Find(&tmp)
-	aff := db.Table(SummaryTable).Find(&GameSummaryDB{}).RowsAffected
-	totalPages = int(math.Ceil(float64(aff) / float64(limit)))
+	if str == NullStr {
+		db.Table(SummaryTable).Offset(offset).Limit(limit).Find(&GameSummaryDB{}).Find(&tmp)
+		aff := db.Table(SummaryTable).Find(&GameSummaryDB{}).RowsAffected
+		totalPages = int(math.Ceil(float64(aff) / float64(limit)))
+	} else {
+		aff := db.Table(SummaryTable).Offset(offset).Limit(limit).Where("name_cn LIKE ?", fmt.Sprintf("%%%s%%",str)).Find(&tmp).RowsAffected
+		totalPages = int(math.Ceil(float64(aff) / float64(limit)))
+	}
 	for _, v := range tmp {
 		ret = append(ret, v.toInfo())
 	}
+
 	return
 }
 

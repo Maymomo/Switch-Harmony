@@ -10,7 +10,7 @@ const maxPageCount = 300
 const maxRetryCount = 5
 
 func needCrawlDirectly() bool {
-	_, npage := db.GetSummaryByPage(0, 1)
+	_, npage := db.GetSummaryByPage(db.NullStr,0, 1)
 	return npage == 0
 }
 
@@ -19,7 +19,7 @@ func BackgroundWork() {
 		if needCrawlDirectly() {
 			Work()
 		}
-		for _ = range time.Tick(time.Hour * 24) {
+		for _ = range time.Tick(time.Hour * 2) {
 			Work()
 		}
 	}()

@@ -6,6 +6,9 @@ import (
 )
 
 func TestQueryDetailByID(t *testing.T) {
-	ret := QueryDetailByID(2)
+	ret,err := QueryDetailByID(2)
+	if err != nil {
+		t.Fatal(err)
+	}
 	fmt.Println(ret)
 }

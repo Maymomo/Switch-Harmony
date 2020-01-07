@@ -11,7 +11,13 @@ func (r *GameDetail) InsertToDB() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	db.Table(DetailTempTable).Create(r.toDB())
+	tmp := r.toDB()
+	b := db.Table(DetailTempTable).NewRecord(tmp)
+	if !b {
+		db.Table(DetailTempTable).Save(tmp)
+	} else {
+		db.Table(DetailTempTable).Create(tmp)
+	}
 }
 
 func QueryDetailByID(id int) (*GameDetail, error) {

@@ -7,12 +7,13 @@ import (
 )
 
 type PagingArgs struct {
-	Limit  int `form:"limit"`
+	Limit  int `form:"limit" binding:"required"`
 	Offset int `form:"offset"`
+	Query  string `form:"q"`
 }
 type PagingResp struct {
 	List  []*db.GameSummary
-	pages int
+	TotalPages int
 }
 
 func GetSummaryOverPage(r *gin.Context) {
@@ -21,10 +22,10 @@ func GetSummaryOverPage(r *gin.Context) {
 		r.AbortWithStatus(http.StatusNotFound)
 		return
 	}
-	list, count := db.GetSummaryByPage(args.Offset, args.Limit)
+	list, count := db.GetSummaryByPage(args.Query, args.Offset, args.Limit)
 	r.JSON(http.StatusOK, PagingResp{
 		List:  list,
-		pages: count,
+		TotalPages: count,
 	})
 }
 

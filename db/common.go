@@ -100,3 +100,7 @@ const (
 	SummaryTable     = "game_summary_dbs"
 	SummaryTempTable = "game_summary_db_temps"
 )
+
+const (
+	NullStr = ""
+)
