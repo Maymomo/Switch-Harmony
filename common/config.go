@@ -25,7 +25,7 @@ type Mysql struct {
 	Password string `yaml:"password"`
 }
 
-var configPath = "/home/lengyu/Switch-Harmony/config.yaml"
+var configPath = "config.yaml"
 
 var config *GlobalConfig = nil
 
