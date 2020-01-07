@@ -1,6 +1,9 @@
 # Harmony * Switch
 Harmony * Switch运行在安卓上的Switch比价软件的后端支撑系统。
 
+## Install 
+
+
 ## API
 ### GameInfo
 #### Paging
@@ -11,42 +14,12 @@ GET /game?limit=24&offset=0
 {
     "List": [
         {
-            "ID": 1,
-            "NameCN": "你裁我剪！斯尼帕",
-            "NameEN": "Snipperclips: Cut It Out, Together",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/568AB7D675964B1540E265A5E2A2EABF.jpg",
-            "Region": "日本",
-            "PriceCNY": 117.28,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": true,
-            "IsExclusive": true
-        },
-        {
-            "ID": 2,
-            "NameCN": "塞尔达传说：旷野之息",
-            "NameEN": "The Legend of Zelda: Breath of the Wild",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/5766ECBAD6A26F5B0DC69FDB5E57C85E.jpg",
-            "Region": "美国",
-            "PriceCNY": 417.57,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": true,
-            "HasDemo": false,
-            "IsExclusive": true
-        },
-        {
             "ID": 3,
             "NameCN": "超级炸弹人R",
             "NameEN": "SUPER BOMBERMAN R",
             "ImgUrl": "http://media.eshop-switch.com/image_s/36A1CA95016E98EE395B8FBD183358D0.jpg",
             "Region": "澳大利亚",
-            "PriceCNY": 109.54,
+            "PriceCNY": 108.85,
             "SaleRate": 50,
             "LanguageTag": [
                 0
@@ -56,76 +29,18 @@ GET /game?limit=24&offset=0
             "IsExclusive": false
         },
         {
-            "ID": 4,
-            "NameCN": "1 2 Switch",
-            "NameEN": "1-2-Switch",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/BD8D4B8483B8CA7716C46159F97F4E2E.jpg",
-            "Region": "香港",
-            "PriceCNY": 320.84,
-            "SaleRate": 100,
-            "LanguageTag": null,
-            "HasSolidEdition": true,
-            "HasDemo": false,
-            "IsExclusive": true
-        },
-        {
-            "ID": 5,
-            "NameCN": "合金弹头3",
-            "NameEN": "ACA NEOGEO METAL SLUG3",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/0B5103272BB1040ED7787F5E4EC9BB96.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
             "ID": 6,
             "NameCN": "黑白棋",
             "NameEN": "Othello",
             "ImgUrl": "http://media.eshop-switch.com/image_s/A9AD78A392FE839E8E0A5E1323C08A4A.jpg",
             "Region": "日本",
-            "PriceCNY": 15.99,
+            "PriceCNY": 16.09,
             "SaleRate": 51,
             "LanguageTag": [
                 0
             ],
             "HasSolidEdition": false,
             "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 7,
-            "NameCN": "拳皇98",
-            "NameEN": "ACA NEOGEO THE KING OF FIGHTERS 98",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/5C618726064524F292ECF8265D8E3FA3.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 8,
-            "NameCN": "兰空",
-            "NameEN": "VOEZ",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/78D4585B0C7D870A80FA1F9BD2EEFBE1.jpg",
-            "Region": "挪威",
-            "PriceCNY": 126.82,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": true,
             "IsExclusive": false
         },
         {
@@ -134,7 +49,7 @@ GET /game?limit=24&offset=0
             "NameEN": "New Frontier Days: Founding Pioneers",
             "ImgUrl": "http://media.eshop-switch.com/image_s/807CF801BE1EEE1E146FEB345CC08701.jpg",
             "Region": "日本",
-            "PriceCNY": 38.37,
+            "PriceCNY": 38.62,
             "SaleRate": 51,
             "LanguageTag": [
                 0
@@ -144,28 +59,12 @@ GET /game?limit=24&offset=0
             "IsExclusive": false
         },
         {
-            "ID": 10,
-            "NameCN": "噗哟噗哟俄罗斯方块S",
-            "NameEN": "Puyo Puyo Tetris",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/5C249A604D97CB39B7110D9EB4F9BF19.jpg",
-            "Region": "美国",
-            "PriceCNY": 208.75,
-            "SaleRate": 100,
-            "LanguageTag": [
-                1,
-                5
-            ],
-            "HasSolidEdition": true,
-            "HasDemo": true,
-            "IsExclusive": false
-        },
-        {
             "ID": 11,
             "NameCN": "超惑星战记Zero",
             "NameEN": "BLASTER MASTER ZERO",
             "ImgUrl": "http://media.eshop-switch.com/image_s/6B5B842BE59B361F7369F067C92C957F.jpg",
             "Region": "日本",
-            "PriceCNY": 31.34,
+            "PriceCNY": 31.54,
             "SaleRate": 50,
             "LanguageTag": null,
             "HasSolidEdition": false,
@@ -186,184 +85,9 @@ GET /game?limit=24&offset=0
             "HasSolidEdition": true,
             "HasDemo": true,
             "IsExclusive": false
-        },
-        {
-            "ID": 13,
-            "NameCN": "勇者斗恶龙英雄I+II",
-            "NameEN": "Dragon Quest Heroes I+II",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/C43AD1440847387A2682D1CDB52B6640.jpg",
-            "Region": "日本",
-            "PriceCNY": 371.42,
-            "SaleRate": 40,
-            "LanguageTag": null,
-            "HasSolidEdition": true,
-            "HasDemo": true,
-            "IsExclusive": false
-        },
-        {
-            "ID": 14,
-            "NameCN": "世界英雄 完美版",
-            "NameEN": "ACA NEOGEO WORLD HEROS PERFECT",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/3F8E31279CE3D1C17B48D788DB6827BE.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 15,
-            "NameCN": "火热火热7",
-            "NameEN": "ACA NEOGEO WAKU WAKU 7",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/9FD048FEFC7F51E857A0EE0751B3D9B4.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 16,
-            "NameCN": "突击奇兵",
-            "NameEN": "ACA NEOGEO SHOCK TROOPERS",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/869DB7DA89DBE89C528F5C21A53F815D.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 17,
-            "NameCN": "信长之野望：创造with威力加强版",
-            "NameEN": "Nobunaga no Yabou - Souzou with Power-Up Kit",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/40D732DF591103E1A61FE560EC4C9498.jpg",
-            "Region": "日本",
-            "PriceCNY": 689.38,
-            "SaleRate": 100,
-            "LanguageTag": null,
-            "HasSolidEdition": true,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 20,
-            "NameCN": "拳皇94",
-            "NameEN": "ACA NEOGEO THE KING OF FIGHTERS 94",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/2D074BC638FDF278D00E52423888BAEB.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 21,
-            "NameCN": "NAM-1975",
-            "NameEN": "ACA NEOGEO NAM-1975",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/1B7C26E10D5B831725E40E35D36D5DF7.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 22,
-            "NameCN": "合金弹头",
-            "NameEN": "ACA NEOGEO METAL SLUG",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/62C20439133FD26E0BAD781AEEAFF64A.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 23,
-            "NameCN": "三国志13威力加强版",
-            "NameEN": "San Goku Shi 13 with Power-Up Kit",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/FE8097AC59BE3BFC1238F8171680BE01.jpg",
-            "Region": "香港",
-            "PriceCNY": 382.5,
-            "SaleRate": 100,
-            "LanguageTag": [
-                1
-            ],
-            "HasSolidEdition": true,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 24,
-            "NameCN": "高尔夫大赛",
-            "NameEN": "ACA NEOGEO NEO TURF MASTERS",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/5422112C4AC562FDB1960996BAD0F758.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 25,
-            "NameCN": "阿尔法任务",
-            "NameEN": "ACA NEOGEO ALPHA MISSION II",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/344FE46373799CF5924AD249AD4FC53C.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 44.3,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": false
-        },
-        {
-            "ID": 26,
-            "NameCN": "神巫女",
-            "NameEN": "KAMIKO",
-            "ImgUrl": "http://media.eshop-switch.com/image_s/EF2A161F53868E83DF4F099A8F2F43E0.jpg",
-            "Region": "澳大利亚",
-            "PriceCNY": 31.64,
-            "SaleRate": 100,
-            "LanguageTag": [
-                0
-            ],
-            "HasSolidEdition": false,
-            "HasDemo": false,
-            "IsExclusive": true
         }
-    ]
+    ],
+    "TotalPages": 160
 }
 ```
 #### Summary
@@ -383,6 +107,32 @@ GET /game/:id/summary
     "HasSolidEdition": false,
     "HasDemo": true,
     "IsExclusive": true
+}
+```
+#### Search
+##### Request
+GET /game?limit=24&offset=0&q=塞尔达
+##### Response 
+```json
+{
+    "List": [
+        {
+            "ID": 488,
+            "NameCN": "塞尔达无双 海拉鲁全明星豪华版",
+            "NameEN": "Hyrule Warriors: Definitive Edition",
+            "ImgUrl": "http://media.eshop-switch.com/image_s/488.jpg",
+            "Region": "日本",
+            "PriceCNY": 288.89,
+            "SaleRate": 40,
+            "LanguageTag": [
+                5
+            ],
+            "HasSolidEdition": true,
+            "HasDemo": false,
+            "IsExclusive": true
+        }
+    ],
+    "TotalPages": 1
 }
 ```
 #### Detail
