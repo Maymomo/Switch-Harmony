@@ -39,6 +39,7 @@ func crawlGameDetail(x QueryGameSummary, save *[]*db.GameInfo, group *sync.WaitG
 	count := 0
 retry:
 	detail, err := GetGameDetailInfo(u)
+	detail.ID = x.ID
 	if err != nil {
 		count++
 		log.Printf("[TASK] Get game %d detail info error. Error is %s. Retry it.", x.ID, err.Error())

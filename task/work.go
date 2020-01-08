@@ -10,7 +10,7 @@ const maxPageCount = 300
 const maxRetryCount = 5
 
 func needCrawlDirectly() bool {
-	_, npage := db.GetSummaryByPage(db.NullStr,0, 1)
+	_, npage := db.GetSummaryByPage(db.NullStr, 0, 1)
 	return npage == 0
 }
 
@@ -33,13 +33,12 @@ func Work() {
 		log.Printf("[TASK] CrawlOvewrPage %d", now)
 		pages, err := CrawlOverPage(now)
 		if err != nil {
-			v, b := err.(StatusCodeError)
-			if b && tryCount < maxRetryCount {
+			if tryCount < maxRetryCount {
 				tryCount++
-				log.Printf("[TASK] CrawlOvewrPage %d error. Status code is %d. retry it.", now, v.code)
+				log.Printf("[TASK] CrawlOvewrPage %d error. err is %e. retry it.\n", now, err)
 				goto retry
 			} else {
-				log.Fatal(err)
+				log.Printf("[TASK][ERROR] CrawlOverPage error %e. Return and retry after two hours.\n", err)
 			}
 		}
 		if len(pages) == 0 {
