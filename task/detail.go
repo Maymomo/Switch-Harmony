@@ -2,6 +2,7 @@ package task
 
 import (
 	"fmt"
+	"github.com/Maymomo/Switch-Harmony/common"
 	"github.com/Maymomo/Switch-Harmony/db"
 	"github.com/PuerkitoBio/goquery"
 	"log"
@@ -95,6 +96,7 @@ func GetGameDetailInfo(url string) (*db.GameDetail, error) {
 			tmp = strings.Split(tmp, "：")[1]
 			lowest, err := db.ParsePrice(tmp)
 			if err != nil {
+				common.PrintFileAndLine()
 				log.Fatal(err)
 			}
 			price.HistoryLowestPrice = lowest
@@ -107,6 +109,7 @@ func GetGameDetailInfo(url string) (*db.GameDetail, error) {
 			tmp = tmp[:len(tmp)-len("折")]
 			saleRate, err := strconv.ParseFloat(tmp, 10)
 			if err != nil {
+				common.PrintFileAndLine()
 				log.Fatal(err)
 			}
 			price.SaleRate = saleRate
@@ -115,6 +118,7 @@ func GetGameDetailInfo(url string) (*db.GameDetail, error) {
 		if len(tmp) != 0 {
 			_, err = fmt.Sscanf(tmp, "剩余%d天", &price.EndDate)
 			if err != nil {
+				common.PrintFileAndLine()
 				log.Fatal(err)
 			}
 			price.IsOnSale = true
@@ -124,12 +128,14 @@ func GetGameDetailInfo(url string) (*db.GameDetail, error) {
 		tmp = priceInfo.Find("span.price-cny").Text()
 		priceCNY, err := db.ParsePrice(tmp)
 		if err != nil {
+			common.PrintFileAndLine()
 			log.Fatal(err)
 		}
 		price.PriceCNY = priceCNY
 		tmp = priceInfo.Find("div.price").Text()
 		priceLocal, err := db.ParsePrice(tmp)
 		if err != nil {
+			common.PrintFileAndLine()
 			log.Fatal(err)
 		}
 		price.PriceLocal = priceLocal
