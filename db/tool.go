@@ -84,7 +84,7 @@ func (r *GameDetailDB) toInfo() *GameDetail {
 	var buf GameDetailJson
 	err := json.Unmarshal([]byte(str), &buf)
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("[ERROR] Toinfo Parse json error %e\n", err)
 		return nil
 	}
 	return &GameDetail{
@@ -114,7 +114,7 @@ func (r *GameSummaryDB) toInfo() *GameSummary {
 	str := r.Json
 	var buf GameSummaryJson
 	if err := json.Unmarshal([]byte(str), &buf); err != nil {
-		log.Fatal(err)
+		log.Printf("[ERROR] Toinfo Parse json error %e\n", err)
 		return nil
 	}
 	return &GameSummary{
